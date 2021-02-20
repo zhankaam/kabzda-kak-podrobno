@@ -22,15 +22,10 @@ export const LikeUseCallback = () => {
     }, [books])
 
     const addBook = () => {
-        const newUsers = [...books, 'Angular' + newDate().getTime()]
+        const newUsers = [...books, 'Angular' + new Date().getTime()]
         setBooks(newUsers)
     }
 
-    return <>
-<button onClick={()=> setCounter(counter + 1)}>+</button>
-        {counter}
-        <Book books={newArray} addBook={addBook}/>
-    </>
 
     type BooksSecretPropsType = {
         books: Array<string>,
@@ -38,16 +33,22 @@ export const LikeUseCallback = () => {
     }
 
 
-const BooksSecret = (props: BooksSecretPropsType) => {
-            debugger
-    console.log('BooksSecret')
-    return <div>
-        <button onClick={()=> props.addBook()}>add book</button>
-        {
-            props.books.map((book,i) => <div key={i}>{book}</div>)
-        }
-    </div>
-}
+    const BooksSecret = (props: BooksSecretPropsType) => {
+        debugger
+        console.log('BooksSecret')
+        return <div>
+            <button onClick={()=> props.addBook()}>add book</button>
+            {
+                props.books.map((book,i) => <div key={i}>{book}</div>)
+            }
+        </div>
+    }
+    return <>
+<button onClick={()=> setCounter(counter + 1)}>+</button>
+        {counter}
+        <BooksSecret books={newArray} addBook={addBook}/>
+    </>
+
 
 
 
